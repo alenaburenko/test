@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Email Verification Form</title>
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <form class="form">
+        <h2 class="form__title">Email verification</h2>
+        <p class="form__description">
+          Let’s get started with this simple verification.
+        </p>
+        <label class="form__label" for="email">Email verification:</label>
+        <input
+          class="form__input"
+          type="text"
+          id="email"
+          name="email"
+          placeholder="example@mail.com"
+          required
+        /><br />
+        <div class="error-text" id="emailErrorText"></div>
+        <label class="form__label" for="url">Verification URL:</label>
+        <input
+          class="form__input"
+          type="text"
+          id="url"
+          name="url"
+          placeholder="https://"
+          required
+        /><br />
+        <div class="error-text" id="urlErrorText"></div>
+        <button class="form__submit-btn" type="submit" id="submitBtn" disabled>
+          Move forward
+        </button>
+      </form>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

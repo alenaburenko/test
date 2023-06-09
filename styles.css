@@ -1,0 +1,132 @@
+body {
+    background-image: url(./assets/bckgr.png);
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .form {
+    font-family: 'Inter', sans-serif;
+    background: #FFFFFF;
+    box-shadow: 0px 8px 16px rgba(94, 123, 178, 0.15);
+    border-radius: 12px;
+    width: 396px;
+    height: 412px;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px;
+    gap: 10px;
+  }
+  .form__title{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+    color: #373747;
+    text-align: center;
+    margin-top: 0px !important;
+    margin-bottom: 32px !important;
+  }
+  .form__description{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #5C6269;
+    text-align: center;
+    margin-top: 0px !important;
+  }
+  .form__input {
+    align-items: center;
+    padding: 8px 16px;
+    width: 88%;
+    height: 30px;
+    border: 1px solid #D5DCE3;
+    border-radius: 4px;  
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .form__input:focus {
+    outline: none;
+    border: 1px solid #2774E6;
+    border-radius: 4px;
+    background-color: transparent !important;
+  }
+  
+  .form__input.error {
+    outline: none;
+    border: 1px solid #DB4732;
+    color: #DB4732;
+  }
+  .form__input.error::placeholder {
+    color: #DB4732;
+  }
+  
+  .error-text {
+    text-align: left;
+    color: #DB4732;
+    font-size: 12px;
+    margin-top: -35px;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 20px;
+  }
+  
+  .form__submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .form__submit-btn:disabled {
+    background: #A3BFE8;
+    cursor: not-allowed;
+  }
+  .form__submit-btn{
+    align-items: center;
+    padding: 8px 16px;
+    width: 98%;
+    border-radius: 4px;
+    height: 48px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    background: #2774E6;
+  }
+  .form__submit-btn:hover{
+    background: #3980EA;
+  }
+  .form__submit-btn:focus{
+    background: #1B69DC;
+  }
+  .form__label{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #373747;
+  }
+  .error-icon{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url("assets/ic_outline-error.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-right: 9px;
+  }
