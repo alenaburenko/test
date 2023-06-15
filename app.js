@@ -1,9 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const emailInput = document.getElementById("email");
-  const urlInput = document.getElementById("url");
-  const submitButton = document.getElementById("submitBtn");
-  const emailErrorText = document.getElementById("emailErrorText");
-  const urlErrorText = document.getElementById("urlErrorText");
+  const form = document.getElementById("myForm");
+  const emailInput = form.querySelector("#email");
+  const urlInput = form.querySelector("#url");
+  const submitButton = form.querySelector("#submitBtn");
+  const emailErrorText = form.querySelector("#emailErrorText");
+  const urlErrorText = form.querySelector("#urlErrorText");
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+  const urlRegex = /^(https?:\/\/)?([a-zA-Z0-9.-]+)\.([a-zA-Z]{2,})(\/\S*)?$/;
 
   emailInput.addEventListener("input", toggleSubmitButton);
   urlInput.addEventListener("input", toggleSubmitButton);
@@ -14,63 +18,51 @@ document.addEventListener("DOMContentLoaded", function () {
   submitButton.addEventListener("click", submitForm);
 
   function toggleSubmitButton() {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const urlRegex = /^https:\/\//;
+    const isEmailValid = emailRegex.test(emailInput.value.trim());
+    const isUrlValid = urlRegex.test(urlInput.value.trim());
 
-    const isEmailValid = emailRegex.test(emailInput.value);
-    const isUrlValid = urlRegex.test(urlInput.value);
-
-    if (isEmailValid && isUrlValid) {
-      submitButton.disabled = false;
-    } else {
-      submitButton.disabled = true;
-    }
+    submitButton.disabled = !(isEmailValid && isUrlValid);
   }
 
   function validateEmail() {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const emailValue = emailInput.value.trim();
 
     if (!emailRegex.test(emailValue)) {
-      emailInput.classList.add("error");
-      emailErrorText.textContent = "";
-
-      const errorIcon = document.createElement("span");
-      errorIcon.classList.add("error-icon");
-      emailErrorText.insertBefore(errorIcon, emailErrorText.firstChild);
-
-      const errorText = document.createTextNode(
+      showError(
+        emailInput,
+        emailErrorText,
         "Looks like it’s not an email. Check it."
       );
-      emailErrorText.appendChild(errorText);
       return false;
     } else {
-      emailInput.classList.remove("error");
-      emailErrorText.textContent = "";
+      clearError(emailInput, emailErrorText);
       return true;
     }
   }
 
   function validateUrl() {
-    const urlRegex = /^https:\/\//;
     const urlValue = urlInput.value.trim();
 
     if (!urlRegex.test(urlValue)) {
-      urlInput.classList.add("error");
-      urlErrorText.textContent = "";
-
-      const errorIcon = document.createElement("span");
-      errorIcon.classList.add("error-icon");
-      urlErrorText.insertBefore(errorIcon, urlErrorText.firstChild);
-
-      const errorText = document.createTextNode("What about security bro?");
-      urlErrorText.appendChild(errorText);
+      showError(urlInput, urlErrorText, "What about security bro?");
       return false;
     } else {
-      urlInput.classList.remove("error");
-      urlErrorText.textContent = "";
+      clearError(urlInput, urlErrorText);
       return true;
     }
+  }
+
+  function showError(input, errorTextElement, errorMessage) {
+    input.classList.add("error");
+    errorTextElement.innerHTML = `
+      <span class="error-icon"></span>
+      ${errorMessage}
+    `;
+  }
+
+  function clearError(input, errorTextElement) {
+    input.classList.remove("error");
+    errorTextElement.textContent = "";
   }
 
   function submitForm(event) {
